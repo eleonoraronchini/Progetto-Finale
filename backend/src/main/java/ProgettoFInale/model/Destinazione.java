@@ -16,6 +16,7 @@ public class Destinazione {
     private Long id;
     @Column(nullable = false)
     private String nome;
+    @Column(length = 1024)
     private String descrizione;
     @Column(nullable = false)
     private String categoria;

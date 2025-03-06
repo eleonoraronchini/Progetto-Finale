@@ -21,6 +21,7 @@ public class Hotel {
     @Enumerated(EnumType.STRING)
     private Disponibilita stato;
     private String descrizione;
+    private String immagine;
     @ManyToOne
     @JoinColumn(name = "destinazione_id", nullable = false)
     private Destinazione destinazione;

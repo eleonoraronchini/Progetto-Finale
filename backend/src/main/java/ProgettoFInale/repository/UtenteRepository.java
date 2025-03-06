@@ -1,4 +1,7 @@
 package ProgettoFInale.repository;
 
-public class UtenteRepository {
+import ProgettoFInale.model.Utente;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UtenteRepository extends JpaRepository<Utente, Long> {
 }

@@ -19,11 +19,6 @@ public class Prenotazione {
     @ManyToOne
     @JoinColumn(name="hotel_id")
     private Hotel hotel;
-    @ManyToOne
-    @JoinColumn(name = "volo_id")
-    private Volo volo;
-    @ManyToOne
-    @JoinColumn(name = "pacchetto_id")
-    private Pacchetto pacchetto;
+
     private String stato; //confermato,annullato
 }
