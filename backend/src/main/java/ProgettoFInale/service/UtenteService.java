@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class UtenteService {
@@ -27,5 +29,21 @@ public class UtenteService {
         Utente utente = mapper.toEntity(utenteDTO);
         repository.save(utente);
         return utenteDTO;
+    }
+    public UtenteDTO updateUtente(Utente utente) {
+        Optional<Utente> utenteRicercato = repository.findById(utente.getId());
+        if (utenteRicercato.isPresent()) {
+            Utente utenteTrovato = utenteRicercato.get();
+            utenteTrovato.setUsername(utente.getUsername());
+            utenteTrovato.setNome(utente.getNome());
+            utenteTrovato.setCognome(utente.getCognome());
+            utenteTrovato.setEmail(utente.getEmail());
+            repository.save(utenteTrovato);
+            UtenteDTO utenteUpdateDTO = mapper.toDto(utenteTrovato);
+            return utenteUpdateDTO;
+        } else {
+            throw new RuntimeException("nessun utente trovato con questo id");
+        }
+
     }
 }

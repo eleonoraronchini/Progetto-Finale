@@ -27,7 +27,8 @@ public class JWTFilter extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
 
         // Escludi il filtro per l'endpoint di registrazione
-        if (requestURI.contains("/utente/register") || requestURI.contains("/utente/login")) {
+        if (requestURI.contains("/utente/register") || requestURI.contains("/utente/login")
+                || requestURI.contains("/destinazione/findAll") || requestURI.contains("/hotel/findAll")) {
             // Non fare nulla, lascia che il filtro passi senza alcuna logica di autenticazione
             filterChain.doFilter(request, response);
             return;

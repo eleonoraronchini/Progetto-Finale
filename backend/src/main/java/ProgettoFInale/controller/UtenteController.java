@@ -1,5 +1,6 @@
 package ProgettoFInale.controller;
 
+import ProgettoFInale.mapper.UtenteMapper;
 import ProgettoFInale.model.Utente;
 import ProgettoFInale.model.enumerations.APIStatus;
 import ProgettoFInale.payload.APIResponse;
@@ -11,6 +12,7 @@ import ProgettoFInale.utils.JWTTools;
 import org.apache.tomcat.Jar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -23,6 +25,8 @@ public class UtenteController {
     @Autowired
     UtenteService utenteService;
     @Autowired JWTTools jwtTools;
+    @Autowired
+    UtenteMapper mapper;
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
@@ -53,6 +57,18 @@ public class UtenteController {
     public APIResponse<String> createUtente(@RequestBody @Validated UtenteDTO utenteDTO) {
         utenteService.createUtente(utenteDTO);
         return new APIResponse<>(APIStatus.SUCCESS, "Utente aggiunto con successo!");
+    }
+
+    @PatchMapping("/updateById/{id}")
+    public ResponseEntity<UtenteDTO> updateById(@PathVariable Long id, @RequestBody UtenteDTO utenteDTO) {
+        Utente utente = mapper.toEntity(utenteDTO);
+        utente.setId(id);
+        if (utente == null ) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            UtenteDTO u =  utenteService.updateUtente(utente);
+            return new ResponseEntity<>(u, HttpStatus.OK);
+        }
     }
     }
 

@@ -14,6 +14,8 @@ public class PrenotazioneMapper {
         prenotazioneDTO.setHotel(prenotazione.getHotel());
         prenotazioneDTO.setStato(prenotazione.getStato());
         prenotazioneDTO.setUtente(prenotazione.getUtente());
+        prenotazioneDTO.setDataArrivo(prenotazione.getDataArrivo());
+        prenotazioneDTO.setDataPartenza(prenotazione.getDataPartenza());
         return prenotazioneDTO;
     }
 
@@ -22,6 +24,8 @@ public class PrenotazioneMapper {
         prenotazione.setHotel(prenotazioneDTO.getHotel());
         prenotazione.setStato(prenotazioneDTO.getStato());
         prenotazione.setUtente(prenotazioneDTO.getUtente());
+        prenotazione.setDataArrivo(prenotazioneDTO.getDataArrivo());
+        prenotazione.setDataPartenza(prenotazioneDTO.getDataPartenza());
         return prenotazione;
     }
 

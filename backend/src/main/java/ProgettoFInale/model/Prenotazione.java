@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity(name = "prenotazioni")
 @Data
 @NoArgsConstructor
@@ -19,6 +21,10 @@ public class Prenotazione {
     @ManyToOne
     @JoinColumn(name="hotel_id")
     private Hotel hotel;
+    @Column(nullable = false, name = "data_check_in")
+    private LocalDate dataArrivo;
+    @Column(nullable = false, name = "data_check_out")
+    private LocalDate dataPartenza;
 
     private String stato; //confermato,annullato
 }
